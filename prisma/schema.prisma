@@ -1,0 +1,123 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+  previewFeatures = ["fullTextSearch", "fullTextIndex"]
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+
+model Course{
+  id String @id @default(uuid())
+  userId String
+  title String @db.Text
+  description String? @db.Text
+  imageUrl String?
+  price Int?
+  isPublished Boolean @default(false)
+
+  categoryId String? //which category does this course belong to!
+  category Category? @relation(fields: [categoryId] , references: [id])
+
+  attachments Attachment[] 
+  chapters Chapter[]
+  purchases Purchase[]
+
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt()
+
+  @@index([categoryId])
+  @@fulltext([title])
+}
+
+
+model Category{
+  id String @id @default(uuid())
+  name String @unique
+
+  courses Course[]
+
+}
+
+model Attachment{
+  id String @id @default(uuid())
+  name String @db.Text
+  url String
+
+  courseId String  //Which course does this attachment belong to! //foreign key
+  course Course @relation(fields: [courseId], references: [id], onDelete: Cascade  )
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt()
+
+  @@index([courseId])
+}
+
+
+model Chapter{
+  id String @id @default(uuid())
+  title String
+  description String? @db.Text
+  videoUrl String?
+  isFree Boolean @default(false)
+  position Int @unique
+  isPublished Boolean @default(false)
+
+  courseId String //what course does this chapter belong to
+  course Course @relation(fields: [courseId], references: [id], onDelete: Cascade) //represents the relationship here
+
+  userProgress UserProgress[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt() 
+
+  @@index([courseId])
+}
+
+
+model UserProgress{
+  id String @id @default(uuid())
+  userId String
+
+  chapterId String
+  chapter Chapter @relation(fields: [chapterId], references: [id], onDelete: Cascade) //the chapter field represents the relationship
+
+  isCompleted Boolean @default(false)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([chapterId])
+  @@unique([userId, chapterId])
+
+}
+
+model Purchase{
+  id String @id @default(uuid())
+  userId String
+
+  courseId String //foreign key what course does the purchase belong to!
+  course Course @relation(fields: [courseId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([courseId])
+  @@unique([userId, courseId])
+}
+
+model StripeCustomer{
+  id String @id @default(uuid())
+  userId String @unique
+  stripeCustomerId String @unique
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt()
+}
+
