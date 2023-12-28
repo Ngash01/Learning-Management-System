@@ -1,9 +1,11 @@
 import './globals.css'
+import { Inter } from 'next/font/google'
 import { ClerkProvider } from '@clerk/nextjs'
 import { ToastProvider } from '@/components/providers/react-toastify'
 import { GlobalProvider } from '@/Provider'
 
 
+const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
   title: 'Learning Management System',
@@ -14,7 +16,7 @@ export default function RootLayout({ children }) {
   return (
     <ClerkProvider>
       <html lang="en">
-        <body>
+        <body className={inter.className}>
           <ToastProvider/>
           <GlobalProvider>
             {children}
