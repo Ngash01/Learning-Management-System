@@ -4,7 +4,6 @@ import { ToastProvider } from '@/components/providers/react-toastify'
 import { GlobalProvider } from '@/Provider'
 
 
-const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
   title: 'Learning Management System',
