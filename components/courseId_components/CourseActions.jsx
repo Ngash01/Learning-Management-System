@@ -81,7 +81,7 @@ const CourseActions = ({ course, isComplete }) => {
             {course.isPublished ? "Unpublish" : "Publish"}
         </Button>
         <AlertDialog handleConfirm={onDelete} disabled={isLoading}>
-            <Button >
+            <Button>
                 <Trash2 className='h-5 w-5'/>
             </Button>
         </AlertDialog>

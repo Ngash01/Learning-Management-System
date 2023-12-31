@@ -9,6 +9,7 @@ import TitleForm from "@/components/courseId_components/TitleForm";
 import { Button } from "@/components/ui/button";
 import { db } from "@/lib/db";
 import { ConfettiStore } from "@/lib/use-confetti-store";
+import { cn } from "@/lib/utils";
 import { auth } from "@clerk/nextjs";
 import { AlertTriangle, DollarSign, File, LayoutGrid, List, MoveLeft, MoveRight } from "lucide-react";
 import Link from "next/link";
@@ -96,16 +97,14 @@ const CourseIdPage = async({params}) => {
             </div>
             <div className="flex gap-3 flex-col">
             <CourseActions course={course} chapter={course.chapters} isComplete={isComplete} />
-            <Link href={'/search'}>
-                <div className='flex items-center gap-2 bg-gray-100 hover:bg-gray-200 hover:transition-all cursor-pointer  
-                p-2 rounded-md w-fit text-md'>
-                    Navigate to your published course
-                    <MoveRight className='w-4  h-4'/>
-                </div>
-            </Link>
-            
             </div>
         </div>
+        {course.isPublished &&  <Link href={`/search`} className={`disabled:cursor-not-allowed`} >
+                    <div  className={`flex items-center gap-2 bg-green-500 hover:bg-green-500 mt-5 hover:transition-all text-black p-2  w-full`}>
+                        Click here to navigate to your published course
+                        <MoveRight className='w-4  h-4'/>
+                    </div>
+                </Link>}
         <div className="grid grid-cols-1 md:grid-cols-2 mt-10 gap-4">
             <div className="space-y-6" >
                 <div className="flex items-center gap-2">
