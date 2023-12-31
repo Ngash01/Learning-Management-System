@@ -13,11 +13,13 @@ const CourseActions = ({ course, isComplete }) => {
     const [isLoading, setIsLoading] = useState(false)
     const [showConfetti, setShowConfetti] = useState(false)
 
+
     const delayRefresh = ()=>{
         const timer = setTimeout(()=>{
             window.location.reload()
             router.push('/search')
-        },6000)
+            
+        },8000)
         return ()=> clearTimeout(timer)
     }
 
