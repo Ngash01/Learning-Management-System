@@ -9,6 +9,7 @@ generator client {
 datasource db {
   provider = "mysql"
   url      = env("DATABASE_URL")
+  relationMode = "prisma"
 }
 
 
@@ -66,7 +67,7 @@ model Chapter{
   description String? @db.Text
   videoUrl String?
   isFree Boolean @default(false)
-  position Int @unique
+  position Int 
   isPublished Boolean @default(false)
 
   courseId String //what course does this chapter belong to

@@ -35,7 +35,7 @@ const ChaptersForm = ({course, chapters}) => {
 
        }catch(err){
         console.log("An error occured on the client side: ",err)
-        toast.error("Something went wrong!")
+        toast.error("Something went wrong! ")
        }
     }
 
