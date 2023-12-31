@@ -1,4 +1,4 @@
-### Learning Management System (LMS) - Next.js 13.4
+# Learning Management System (LMS) - Next.js 13.4
 Welcome to the Learning Management System (LMS) project! This is a web application built with Next.js 13.4, Tailwind CSS, and MySQL, designed to provide a comprehensive platform for managing courses, teachers, and students.
 
 ## Features
