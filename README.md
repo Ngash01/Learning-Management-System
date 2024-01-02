@@ -1,3 +1,34 @@
+# Learning Management System (LMS) - Next.js 13.4
+Welcome to the Learning Management System (LMS) project! This is a web application built with Next.js 13.4, Tailwind CSS, and MySQL, designed to provide a comprehensive platform for managing courses, teachers, and students.
+
+## Features
+Course CRUD Operations
+Create: Add new courses to the system with relevant details such as title, description, and instructor.
+Read: View a list of all available courses with their details.
+Update: Modify existing course information, keeping the system up-to-date.
+Delete: Remove courses that are no longer relevant or needed.
+
+
+### Teacher Mode
+
+Instructor Dashboard: Teachers have access to a personalized dashboard where they can manage their courses, assignments, and student interactions.
+Course Creation: Teachers can create and manage courses, including adding and modifying course content.
+Grading System: Evaluate and grade student assignments easily through the system.
+
+### Student Mode
+
+Student Dashboard: Students can view their enrolled courses, upcoming assignments, and grades.
+Enrollment: Easily enroll in courses to access learning materials and assignments.
+Submit Assignments: Submit assignments online for evaluation by teachers.
+
+### Technologies Used
+
+Next.js 13.4: A React framework for building server-side rendered and statically generated web applications.
+Tailwind CSS: A utility-first CSS framework for building modern, responsive designs.
+MySQL: A relational database management system used for storing and retrieving data.
+UploadThing: A library or module for handling file uploads, enabling the system to manage course materials and student assignments.
+
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
