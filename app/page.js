@@ -6,12 +6,15 @@ import { Roboto } from 'next/font/google'
 import Link from 'next/link'
 import { useInView, useAnimation } from 'framer-motion'
 import { useState, useRef, useEffect } from 'react'
+import { useRouter } from 'next/navigation'
+import { redirect } from 'next/navigation';
 
 
 const HomePage = () => {
   const ref = useRef(null)
   const isInView = useInView(ref,{once:true})
   const mainControls = useAnimation()
+  const router = useRouter()
 
   useEffect(()=>{
     if(isInView){
@@ -20,8 +23,18 @@ const HomePage = () => {
   },[isInView])
 
 
+  useEffect(() => {
+    const smallWindow = window.innerWidth < 500
+    if(smallWindow){
+      router.push("/search")
+    }
+  }, [router])
+
+
+
   return (
-    <div className='w-full' >
+    <>
+      <div className='w-full' >
 
       <div className=''>
       <HeaderPage/>
@@ -30,12 +43,12 @@ const HomePage = () => {
 
     {/* Banner Section */}
         <div 
-        className='h-[100vh]  overflow-x-hidden imageUrl pt-[100px] flex justify-center items-center'>
-          {/* <img src="/assets/lms-banner-6.png" className='absolute top-[100px] -right-[20rem] z-30 ml-auto overflow-x-hidden '  alt="" /> */}
+        className='h-[100vh]  overflow-x-hidden md:imageUrl pt-[100px] flex justify-center items-center'>
+          {/* <img src="/assets/lms-banner-3-new.png" className='md:hidden absolute top-[100px] -right-[20rem] z-30 ml-auto overflow-x-hidden '  alt="" /> */}
 
         
           <div className='flex flex-col gap-x-4 gap-y-3 absolute z-40 bg-transparent right-[15rem] p-10'>
-            <h3 className='text-4xl text-center'>The LMS</h3>
+            <h3 className='text-4xl  text-center'>The LMS</h3>
             <h2 className='text-6xl font-bold'>Designed For Achievement</h2>
             <div className='flex flex-col items-center'>
               <p className='text-xl'>Use the training platform created to</p>
@@ -135,6 +148,8 @@ const HomePage = () => {
 
 
     </div>
+  
+  </>
   )
 }
 
